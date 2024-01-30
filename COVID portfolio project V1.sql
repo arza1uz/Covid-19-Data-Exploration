@@ -143,3 +143,40 @@ join [Portfolio_Project_1].dbo.CovidVaccinations as vac
 
 select *
 from PercentPopulationVaccinated
+
+
+--Vizualizations for Tableau Dashboard
+
+
+--Viz 1: Global Numbers
+Select SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage
+From [Portfolio_Project_1].dbo.CovidDeaths
+--Where location like '%Mexico%'
+where continent is not null 
+--Group By date
+order by 1,2
+
+--Viz 2: Total Death Count per Continet
+Select location, SUM(cast(new_deaths as int)) as TotalDeathCount
+From [Portfolio_Project_1].dbo.CovidDeaths
+--Where location like '%Mexico%'
+Where continent is null 
+and location not in ('World', 'European Union', 'International')
+Group by location
+order by TotalDeathCount desc
+
+
+--Viz 3: Total Infection by Country
+Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as PercentPopulationInfected
+From [Portfolio_Project_1].dbo.CovidDeaths
+--Where location like '%Mexico%'
+Group by Location, Population
+order by PercentPopulationInfected desc
+
+
+--Viz 4: Percent Population Infected
+Select Location, Population,date, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as PercentPopulationInfected
+From [Portfolio_Project_1].dbo.CovidDeaths
+--Where location like '%Mexico%'
+Group by Location, Population, date
+order by PercentPopulationInfected desc
