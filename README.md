@@ -62,14 +62,41 @@ These questions guide the analytical process and ensure that the insights produc
 
 ---
 
-## Project Structure & Approach
+## Key KPIs Defined
 
-1. Data extraction and filtering using SQL  
-2. Aggregation and calculation of key metrics (infection rates, death rates, vaccination coverage)  
-3. Preparation of clean, visualization-ready datasets  
-4. Dashboard design focused on clarity and insight delivery  
+The following key performance indicators (KPIs) were defined and calculated to support structured analysis and enable consistent comparison across countries and regions:
 
-This approach mirrors real-world analytical workflows used in **business intelligence and data analytics roles**.
+- **Total Cases**  
+  Cumulative number of confirmed COVID-19 cases reported per country and over time.
+
+- **Total Deaths**  
+  Cumulative number of confirmed COVID-19 related deaths, used to assess overall impact.
+
+- **Infection Rate (%)**  
+  Percentage of the total population infected by COVID-19.  
+  *Calculated as:*  
+  `total_cases / population * 100`
+
+- **Death Rate (%)**  
+  Likelihood of death after contracting COVID-19, providing insight into severity and outcomes.  
+  *Calculated as:*  
+  `total_deaths / total_cases * 100`
+
+- **New Cases (Daily)**  
+  Number of new confirmed cases reported per day, used to analyze short-term trends and waves.
+
+- **New Deaths (Daily)**  
+  Number of new deaths reported per day, enabling time-based mortality analysis.
+
+- **People Vaccinated (Rolling Total)**  
+  Cumulative count of individuals vaccinated over time, calculated using window functions.
+
+- **Vaccination Coverage (%)**  
+  Percentage of the population that has received at least one vaccine dose.  
+  *Calculated as:*  
+  `rolling_people_vaccinated / population * 100`
+
+These KPIs form the analytical backbone of the project and are used consistently across SQL queries and visualizations to ensure **clarity, comparability, and analytical rigor**.
 
 ---
 
